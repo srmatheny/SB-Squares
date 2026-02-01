@@ -1,4 +1,8 @@
 /* styles.css */
+
+
+
+
 root {
     --grid-size: 10;
 }
@@ -15,7 +19,7 @@ body {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-    background-color: #ddd;
+    background-color: #ccc;
     /*border: 2px solid red;*/
 }
 
@@ -94,3 +98,96 @@ body {
     background-color: rgba(255, 255, 255, 0.6);
     background-blend-mode: lighten;
 }
+
+.button-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 600px;
+}
+
+.save-button-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    /* border: 2px solid blue; */
+}
+#save-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    padding: 8px;
+    border-radius: 50%;
+    color: #ccc;
+    font-size: 1.1rem;
+    background: rgbs(255, 194, 209, 0.3);
+    border: 2px solid(255, 255, 255, 0.18);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+#save-button:hover {
+    transform: scale(1.1);
+    background: green;
+}
+
+.load-button-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    /* border: 2px solid blue; */
+}
+#load-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    padding: 8px;
+    border-radius: 50%;
+    color: #ccc;
+    font-size: 1.1rem;
+    background: rgbs(255, 194, 209, 0.3);
+    border: 2px solid(255, 255, 255, 0.18);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+#load-button:hover {
+    transform: scale(1.1);
+    background: blue;
+}
+
+.reset-button-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    /* border: 2px solid blue; */
+}
+#reset-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    padding: 8px;
+    border-radius: 50%;
+    color: #ccc;
+    font-size: 1.1rem;
+    background: rgbs(255, 194, 209, 0.3);
+    border: 2px solid(255, 255, 255, 0.18);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+#reset-button:hover {
+    transform: scale(1.1);
+    background: red;
+}
+
+

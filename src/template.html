@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <title>SB Squares</title>
 </head>
 <body>
@@ -12,7 +15,24 @@
         <div id="afc-team" class="team-top"></div>
         <div id="nfc-team" class="team-left"></div>
         <div class="grid-board" id="grid"></div>
+        <div class="button-area">
+            <div class="save-button-area">
+                <button id="save-button"><i class="fa-solid fa-floppy-disk"></i></button>
+                <h4 class="btn-text">Save State</h4>
+            </div>
+            <div class="load-button-area">
+                <button id="load-button"><i class="fa-solid fa-upload"></i></button>
+                <h4 class="btn-text">Load State</h4>
+            </div>
+            <div class="reset-button-area">
+                <button id="reset-button"><i class="fa-solid fa-toilet"></i></button>
+                <h4 class="btn-text">Reset Grid</h4>
+            </div>
+        </div>
     </div>
+
+
+
 
 </body>
 </html>
