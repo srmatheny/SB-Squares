@@ -109,10 +109,16 @@ function saveState () {
     saveArrayToLocalStorage(MY_DATA_KEY, gridItemsArray);
 }
 
+function resetState () {
+    grid.innerHTML = '';
+    nfcGrid.innerHTML = '';
+    afcGrid.innerHTML = '';
+    initialPageLoad ();
+}
 
 initialPageLoad();
 
 saveButton.addEventListener('click', saveState);
 loadButton.addEventListener('click', loadState);
-resetButton.addEventListener('click', initialPageLoad);
+resetButton.addEventListener('click', resetState);
 
