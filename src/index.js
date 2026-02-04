@@ -1,9 +1,87 @@
 // src/index.js
 
 import "./styles.css";
+import { initializeApp } from "firebase/app";
 import { greeting } from "./greeting.js";
 import { loadOdin } from "./image-load.js";
-import { saveArrayToLocalStorage, getArrayFromLocalStorage } from "./storage.js";
+import { saveArrayToLocalStorage, getArrayFromLocalStorage, saveArrayToWebStorage, getArrayFromWebStorage, saveArrayToFBDatabase, getValueFromFBDatabase } from "./storage.js";
+import { isFirebaseInitialized } from '../firebase-config.js';
+import { getDatabase, onValue, ref, set } from "firebase/database";
+
+
+
+//check initialize firebase app
+const App = () => {
+  if (!isFirebaseInitialized()) {
+    console.log('Firebase is not initialized with a valid projectId.');
+    return null;
+  }
+
+};
+
+
+//const app = initailizeApp(firebaseConfig);
+
+function writeUserData(userId, name, email, imageUrl) {
+    
+    const db = getDatabase();
+    const reference = ref(db, 'users/' + userId);
+
+    set(reference, {
+        username: name,
+        email: email,
+        profile_picture : imageUrl
+    });
+
+};
+
+function getDistance(userId) {
+
+    const db = getDatabase();
+    const distanceRef = ref(db, 'users/' + userId + '/distance');
+    console.log(distanceRef);
+    onValue(distanceRef, (snapshot) => {
+        const data = snapshot.val();
+        console.log(data);
+        updateDistance("postElement", data);
+    });
+
+}
+function updateDistance( post, data ) {
+    console.log(post);
+    console.log(data);
+
+}
+
+function getTValue(arrayId) {
+    const db = getDatabase();
+    const valReference = ref(db, 'values/' + arrayId + '/tvalue');
+    console.log(valReference);
+    onValue(valReference, (snapshot) => {
+        const data = snapshot.val();
+        console.log(data);
+        updateDistance("postElement", data);
+    });
+}
+
+// const commentsRef = ref(db, 'post-comments/' + postId);
+// onValue(commentsRef, (snapshot) => {
+//     snapshot.forEach((childSnapshot) => {
+//         const childKey = childSnapshot.key;
+//         const childData = childSnapshot.val();
+//     });
+// }, {
+//     onlyOnce: true
+// });
+
+
+getDistance("shadmatheny");
+
+getTValue(3);
+
+
+//writeUserData("shadmatheny", "srmatheny", "updatedemail@me.com", "myimageurl");
+
 
 
 /*import odinImage from "./odin.png";
@@ -14,9 +92,7 @@ image.style.opacity = '0.5';
 image.style.objectFit = 'cover';
 document.body.appendChild(image);*/
 
-
 console.log(greeting);
-
 loadOdin();
 
 
@@ -36,6 +112,7 @@ const afcGrid = document.getElementById('afc-team');
 const saveButton = document.getElementById('save-button');
 const loadButton = document.getElementById('load-button');
 const resetButton = document.getElementById('reset-button');
+const test = document.getElementById('dead-corner');
 console.log(saveButton);
 console.log(loadButton);
 console.log(resetButton);
@@ -96,6 +173,49 @@ function loadState() {
     }
 }
 
+function loadStateFromWeb() {
+    const db = getDatabase();
+    let arrID = 99;
+    const gridItems = document.querySelectorAll('.cell');
+    const valuesToLoad = [];
+
+    for (let i = 0; i < 100; i++) {
+        const valueReference = ref(db, 'values/' + i + '/tvalue');
+
+        onValue(valueReference, (snapshot) => {
+        const data = snapshot.val();
+        console.log(data);
+        valuesToLoad[i] = data;
+        console.log(valuesToLoad[99]);
+        gridItems[i].innerHTML = data;
+
+        });
+
+
+    };
+    
+
+    
+    console.log(valuesToLoad[99]);
+
+    
+    // for (let i = 0; i < 100; i++) {
+    //     let temp = getValueFromFBDatabase(i);
+    //     console.log(temp);
+    //     valuesToLoad[i] = temp;
+    // };
+
+}
+
+function saveStateToWeb () {
+    const gridItems = document.querySelectorAll('.cell');
+    const gridItemsArray = [];
+    for (let i = 0; i < 100; i++) {
+        gridItemsArray[i] = gridItems[i].textContent;
+    };
+    saveArrayToFBDatabase(gridItemsArray);
+}
+
 function saveState () {
     const gridItems = document.querySelectorAll('.cell');
     const gridItemsArray = []; //Array.from(gridItems);
@@ -118,7 +238,83 @@ function resetState () {
 
 initialPageLoad();
 
-saveButton.addEventListener('click', saveState);
-loadButton.addEventListener('click', loadState);
+saveButton.addEventListener('click', saveStateToWeb);
+loadButton.addEventListener('click', loadStateFromWeb);
 resetButton.addEventListener('click', resetState);
+test.addEventListener('click', loadStateFromWeb);
+
+
+// let newArray = [0, 1, 2, 'srm', 'sam', 'drm']
+let anotherArray = []
+// console.log(newArray);
+console.log(anotherArray);
+
+//saveToWeb(db);
+
+//saveArrayToWebStorage(db, 0, newArray[0]);
+//let retrievedValue = 'x';
+//console.log(retrievedValue);
+
+
+
+
+function saveToWeb(db) {
+    for (let i = 0; i < (newArray.length); i++) {
+        saveArrayToWebStorage(db, i, newArray[i]);
+    };
+}
+
+function getFromWeb(db) {
+
+    const dbRef = ref(db, 'values/');
+    //console.log(anotherArray);
+    
+    for (let i = 0; i < (newArray.length); i++) {
+        
+        let newVal;
+        
+        onValue(dbRef, (snapshot) => {
+            const key = snapshot.key;
+            const childData = snapshot.val();
+            console.log(`The key is ${key}`);
+            console.log(`The value object is:`, childData);
+
+            newVal = childData[i].tvalue;
+            console.log(newVal);
+            anotherArray[i] = newVal;
+            console.log(anotherArray);
+        });
+
+    };
+
+    const gridItems = document.querySelectorAll('.cell');
+
+    for (let i = 0; i < 6; i++) {
+        gridItems[i].textContent = anotherArray[i];
+    };
+
+}
+
+function getValuesFromWebStorage (db) {
+    let newVal;
+    const arrayID = 3;
+    const dbRef = ref(db, 'values/');
+    console.log(db);
+    console.log(dbRef);
+
+    onValue(dbRef, (snapshot) => {
+        const key = snapshot.key;
+        const childData = snapshot.val();
+        console.log(`The key is ${key}`);
+        console.log(`The value object is:`, childData);
+
+        newVal = childData[3].tvalue;
+        console.log(newVal);
+
+    });
+
+    return newVal;
+
+}
+
 
