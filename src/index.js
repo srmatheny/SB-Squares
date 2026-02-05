@@ -5,6 +5,7 @@ import { initializeApp } from "firebase/app";
 import { greeting } from "./greeting.js";
 import { loadOdin } from "./image-load.js";
 import { saveArrayToLocalStorage, getArrayFromLocalStorage, saveArrayToWebStorage, getArrayFromWebStorage, saveArrayToFBDatabase, getValueFromFBDatabase } from "./storage.js";
+import { saveAFCToFBDatabase, saveNFCToFBDatabase } from "./storage.js";
 import { isFirebaseInitialized } from '../firebase-config.js';
 import { getDatabase, onValue, ref, set } from "firebase/database";
 
@@ -113,8 +114,16 @@ const saveButton = document.getElementById('save-button');
 const loadButton = document.getElementById('load-button');
 const resetButton = document.getElementById('reset-button');
 const test = document.getElementById('dead-corner');
+const saveAFCButton = document.getElementById('save-afc-button');
+const loadAFCButton = document.getElementById('load-afc-button');
+const saveNFCButton = document.getElementById('save-nfc-button');
+const loadNFCButton = document.getElementById('load-nfc-button');
 console.log(saveButton);
 console.log(loadButton);
+console.log(saveAFCButton);
+console.log(loadAFCButton);
+console.log(saveNFCButton);
+console.log(loadNFCButton);
 console.log(resetButton);
 
 
@@ -138,7 +147,9 @@ function initialPageLoad () {
     for (let i = 0; i < 10; i++) {
         const div = document.createElement('div');
         div.className = 'number-cell';
-        div.innerText = i;
+        let charVar = String.fromCharCode(i+65);
+
+        div.innerText = charVar;
 
         div.onclick = () => {
             const number = prompt("Enter number:");
@@ -191,19 +202,55 @@ function loadStateFromWeb() {
 
         });
 
-
     };
-    
-
     
     console.log(valuesToLoad[99]);
 
+}
+
+function loadAFCFromWeb() {
+    const db = getDatabase();
+    const gridItems = document.querySelectorAll('#afc-team .number-cell');
+    const valuesToLoad = [];
+
+    for (let i = 0; i < 10; i++) {
+        const valueReference = ref(db, 'afc-numbers/' + i + '/tvalue');
+
+        onValue(valueReference, (snapshot) => {
+        const data = snapshot.val();
+        console.log(data);
+        valuesToLoad[i] = data;
+        console.log(valuesToLoad[99]);
+        gridItems[i].innerHTML = data;
+
+        });
+
+    };
     
-    // for (let i = 0; i < 100; i++) {
-    //     let temp = getValueFromFBDatabase(i);
-    //     console.log(temp);
-    //     valuesToLoad[i] = temp;
-    // };
+    console.log(valuesToLoad[0]);
+
+}
+
+function loadNFCFromWeb() {
+    const db = getDatabase();
+    const gridItems = document.querySelectorAll('#nfc-team .number-cell');
+    const valuesToLoad = [];
+
+    for (let i = 0; i < 10; i++) {
+        const valueReference = ref(db, 'nfc-numbers/' + i + '/tvalue');
+
+        onValue(valueReference, (snapshot) => {
+        const data = snapshot.val();
+        console.log(data);
+        valuesToLoad[i] = data;
+        console.log(valuesToLoad[99]);
+        gridItems[i].innerHTML = data;
+
+        });
+
+    };
+    
+    console.log(valuesToLoad[0]);
 
 }
 
@@ -242,20 +289,48 @@ saveButton.addEventListener('click', saveStateToWeb);
 loadButton.addEventListener('click', loadStateFromWeb);
 resetButton.addEventListener('click', resetState);
 test.addEventListener('click', loadStateFromWeb);
+saveAFCButton.addEventListener('click', saveAFCToWeb);
+saveNFCButton.addEventListener('click', saveNFCToWeb);
+loadAFCButton.addEventListener('click', loadAFCFromWeb);
+loadNFCButton.addEventListener('click', loadNFCFromWeb);
 
+
+
+function saveNFCToWeb () {
+    console.log("enter nfc save to web");
+
+    const gridItems = document.querySelectorAll("#nfc-team .number-cell");
+    console.log(gridItems);
+
+    const gridItemsArray = [];
+        console.log(gridItemsArray)
+
+    for (let i = 0; i < 10; i++) {
+        gridItemsArray[i] = gridItems[i].textContent;
+    };
+    console.log(gridItemsArray)
+    saveNFCToFBDatabase(gridItemsArray);
+}
+
+function saveAFCToWeb () {
+    console.log("enter afc save to web");
+
+    const gridItems = document.querySelectorAll("#afc-team .number-cell");
+    console.log(gridItems);
+
+    const gridItemsArray = [];
+        console.log(gridItemsArray)
+
+    for (let i = 0; i < 10; i++) {
+        gridItemsArray[i] = gridItems[i].textContent;
+    };
+    console.log(gridItemsArray)
+    saveAFCToFBDatabase(gridItemsArray);
+}
 
 // let newArray = [0, 1, 2, 'srm', 'sam', 'drm']
-let anotherArray = []
-// console.log(newArray);
-console.log(anotherArray);
-
-//saveToWeb(db);
-
-//saveArrayToWebStorage(db, 0, newArray[0]);
-//let retrievedValue = 'x';
-//console.log(retrievedValue);
-
-
+//let anotherArray = []
+//console.log(anotherArray);
 
 
 function saveToWeb(db) {
@@ -316,5 +391,4 @@ function getValuesFromWebStorage (db) {
     return newVal;
 
 }
-
 

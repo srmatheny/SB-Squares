@@ -18,7 +18,7 @@ body {
     gap: 2px;
     width: 100%;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0;
     background-color: #ccc;
     /*border: 2px solid red;*/
 }
@@ -190,4 +190,87 @@ body {
     background: red;
 }
 
+#save-afc-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    padding: 8px;
+    border-radius: 50%;
+    color: #ccc;
+    font-size: 1.1rem;
+    background: rgbs(255, 194, 209, 0.3);
+    border: 2px solid(255, 255, 255, 0.18);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+#save-afc-button:hover {
+    transform: scale(1.1);
+    background: green;
+}
+
+#load-afc-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    padding: 8px;
+    border-radius: 50%;
+    color: #ccc;
+    font-size: 1.1rem;
+    background: rgbs(255, 194, 209, 0.3);
+    border: 2px solid(255, 255, 255, 0.18);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+#load-afc-button:hover {
+    transform: scale(1.1);
+    background: red;
+}
+
+#save-nfc-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    padding: 8px;
+    border-radius: 50%;
+    color: #ccc;
+    font-size: 1.1rem;
+    background: rgbs(255, 194, 209, 0.3);
+    border: 2px solid(255, 255, 255, 0.18);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+#save-nfc-button:hover {
+    transform: scale(1.1);
+    background: green;
+}
+
+#load-nfc-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    padding: 8px;
+    border-radius: 50%;
+    color: #ccc;
+    font-size: 1.1rem;
+    background: rgbs(255, 194, 209, 0.3);
+    border: 2px solid(255, 255, 255, 0.18);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+#load-nfc-button:hover {
+    transform: scale(1.1);
+    background: red;
+}
 

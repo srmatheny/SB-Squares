@@ -31,6 +31,32 @@ export function saveArrayToFBDatabase (arrayToSave) {
     };
 }
 
+export function saveAFCToFBDatabase (arrayToSave) {
+    const db = getDatabase();
+    for ( let arrID = 0; arrID < 10; arrID++) {
+        const reference = ref(db, 'afc-numbers/' + arrID);
+        let valToSave = arrayToSave[arrID];
+        console.log(valToSave);
+
+        set (reference, {
+            tvalue: arrayToSave[arrID]
+        });
+    };
+}
+
+export function saveNFCToFBDatabase (arrayToSave) {
+    const db = getDatabase();
+    for ( let arrID = 0; arrID < 10; arrID++) {
+        const reference = ref(db, 'nfc-numbers/' + arrID);
+        let valToSave = arrayToSave[arrID];
+        console.log(valToSave);
+
+        set (reference, {
+            tvalue: arrayToSave[arrID]
+        });
+    };
+}
+
 export function getValueFromFBDatabase (arrID, valuesToLoad) {
     const db = getDatabase();
     const valueReference = ref(db, 'values/' + arrID + '/tvalue');
