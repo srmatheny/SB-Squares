@@ -118,13 +118,14 @@ const saveAFCButton = document.getElementById('save-afc-button');
 const loadAFCButton = document.getElementById('load-afc-button');
 const saveNFCButton = document.getElementById('save-nfc-button');
 const loadNFCButton = document.getElementById('load-nfc-button');
-console.log(saveButton);
-console.log(loadButton);
-console.log(saveAFCButton);
-console.log(loadAFCButton);
-console.log(saveNFCButton);
-console.log(loadNFCButton);
-console.log(resetButton);
+const noButton = document.getElementById('no-button');
+//console.log(saveButton);
+//console.log(loadButton);
+//console.log(saveAFCButton);
+//console.log(loadAFCButton);
+//console.log(saveNFCButton);
+//console.log(loadNFCButton);
+//console.log(resetButton);
 
 
 function initialPageLoad () {
@@ -293,7 +294,7 @@ saveAFCButton.addEventListener('click', saveAFCToWeb);
 saveNFCButton.addEventListener('click', saveNFCToWeb);
 loadAFCButton.addEventListener('click', loadAFCFromWeb);
 loadNFCButton.addEventListener('click', loadNFCFromWeb);
-
+noButton.addEventListener('click', showDetails);
 
 
 function saveNFCToWeb () {
@@ -327,6 +328,11 @@ function saveAFCToWeb () {
     console.log(gridItemsArray)
     saveAFCToFBDatabase(gridItemsArray);
 }
+
+function showDetails() {
+    alert("Superbowl Squares v2.2 | SrM Copyright \u00A9 2026");
+}
+
 
 // let newArray = [0, 1, 2, 'srm', 'sam', 'drm']
 //let anotherArray = []

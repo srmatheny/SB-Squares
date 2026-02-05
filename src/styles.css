@@ -11,6 +11,10 @@ body {
 
 }
 
+.dead:hover {
+    transform: rotate(345deg);
+}
+
 .container {
     display: grid;
     grid-template-columns: 50px 1fr;
@@ -111,6 +115,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 200px;
+    background-color: #ccc;
     /* border: 2px solid blue; */
 }
 #save-button {
@@ -119,7 +124,8 @@ body {
     align-items: center;
     width: 40px;
     height: 40px;
-    margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 5px;    
     padding: 8px;
     border-radius: 50%;
     color: #ccc;
@@ -130,7 +136,7 @@ body {
     transition: all 0.2s ease;
 }
 #save-button:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
     background: green;
 }
 
@@ -139,6 +145,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 200px;
+    background-color: #ccc;
     /* border: 2px solid blue; */
 }
 #load-button {
@@ -147,7 +154,8 @@ body {
     align-items: center;
     width: 40px;
     height: 40px;
-    margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 5px;    
     padding: 8px;
     border-radius: 50%;
     color: #ccc;
@@ -158,7 +166,7 @@ body {
     transition: all 0.2s ease;
 }
 #load-button:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
     background: blue;
 }
 
@@ -167,6 +175,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 200px;
+    background-color: #ccc;
     /* border: 2px solid blue; */
 }
 #reset-button {
@@ -175,7 +184,8 @@ body {
     align-items: center;
     width: 40px;
     height: 40px;
-    margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 5px;    
     padding: 8px;
     border-radius: 50%;
     color: #ccc;
@@ -186,7 +196,7 @@ body {
     transition: all 0.2s ease;
 }
 #reset-button:hover {
-    transform: scale(1.1);
+    transform: rotate(180deg) scale(1.2);
     background: red;
 }
 
@@ -196,7 +206,8 @@ body {
     align-items: center;
     width: 30px;
     height: 30px;
-    margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 5px;    
     padding: 8px;
     border-radius: 50%;
     color: #ccc;
@@ -207,7 +218,7 @@ body {
     transition: all 0.2s ease;
 }
 #save-afc-button:hover {
-    transform: scale(1.1);
+    transform: rotate(180deg) scale(1.3);
     background: green;
 }
 
@@ -217,7 +228,8 @@ body {
     align-items: center;
     width: 30px;
     height: 30px;
-    margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 5px;    
     padding: 8px;
     border-radius: 50%;
     color: #ccc;
@@ -228,8 +240,8 @@ body {
     transition: all 0.2s ease;
 }
 #load-afc-button:hover {
-    transform: scale(1.1);
-    background: red;
+    transform: rotate(180deg) scale(1.3);
+    background: blue;
 }
 
 #save-nfc-button {
@@ -238,7 +250,8 @@ body {
     align-items: center;
     width: 30px;
     height: 30px;
-    margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 5px;    
     padding: 8px;
     border-radius: 50%;
     color: #ccc;
@@ -249,7 +262,7 @@ body {
     transition: all 0.2s ease;
 }
 #save-nfc-button:hover {
-    transform: scale(1.1);
+    transform: rotate(180deg) scale(1.3);
     background: green;
 }
 
@@ -259,7 +272,8 @@ body {
     align-items: center;
     width: 30px;
     height: 30px;
-    margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 5px;
     padding: 8px;
     border-radius: 50%;
     color: #ccc;
@@ -270,7 +284,36 @@ body {
     transition: all 0.2s ease;
 }
 #load-nfc-button:hover {
-    transform: scale(1.1);
-    background: red;
+    transform: rotate(180deg) scale(1.3);
+    background: blue;
 }
 
+.no-button-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    background-color: #ccc;
+    /* border: 2px solid blue; */
+}
+#no-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 5px;    
+    padding: 8px;
+    border-radius: 10px;
+    color: #ccc;
+    font-size: 1.1rem;
+    background: rgbs(255, 194, 209, 0.3);
+    border: 2px solid(255, 255, 255, 0.18);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+#no-button:hover {
+    transform: scale(1.1);
+    background: blue;
+}
