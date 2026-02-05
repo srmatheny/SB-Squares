@@ -307,17 +307,8 @@ loadNFCButton.addEventListener('click', loadNFCFromWeb);
 noButton.addEventListener('click', showResults);
 
 function showResults () {
-    const resultsQ1 = "Q1 SEA: x || NE: x";
-    alert(resultsQ1);
-    const resultsQ2 = "Q2 SEA: x || NE: x";
-    alert(resultsQ2);
-    const resultsQ3 = "Q3 SEA: x || NE: x";
-    alert(resultsQ3);
-    const resultsQ4 = "Q4 SEA: x || NE: x";
-    alert(resultsQ4);
-    const resultsOT = "OT SEA: x || NE: x";
-    alert(resultsOT);
-    
+    const results = "Q1 SEA: x || NE: x\nQ2 SEA: x || NE: x\nQ3 SEA: x || NE: x\nQ4 SEA: x || NE: x\nOT SEA: x || NE: x";
+    alert(results);
 }
 
 function saveNFCToWeb () {
