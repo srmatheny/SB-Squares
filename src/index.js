@@ -135,12 +135,22 @@ function initialPageLoad () {
         div.className = 'cell';
         //div.innerText = storedValues[i];
         div.innerText = i + 1;
-
-        div.onclick = () => {
-            const name = prompt("Enter name:");
-            if (name) div.textContent = name;
-            //saveState();
+        
+        div.ondblclick = () => {
+            div.style.backgroundColor = "gray";
         };
+        div.onclick = () => {
+            if (isNaN(div.textContent)) {
+                alert ("Square already chosen, pick a different square");
+                return;
+            } else {
+                const name = prompt("Enter name:");
+                if (name) div.textContent = name;
+                //saveState();
+            };
+            
+        };
+        
 
         grid.appendChild(div);
     }
@@ -289,13 +299,26 @@ initialPageLoad();
 saveButton.addEventListener('click', saveStateToWeb);
 loadButton.addEventListener('click', loadStateFromWeb);
 resetButton.addEventListener('click', resetState);
-test.addEventListener('click', loadStateFromWeb);
+test.addEventListener('click', showDetails);
 saveAFCButton.addEventListener('click', saveAFCToWeb);
 saveNFCButton.addEventListener('click', saveNFCToWeb);
 loadAFCButton.addEventListener('click', loadAFCFromWeb);
 loadNFCButton.addEventListener('click', loadNFCFromWeb);
-noButton.addEventListener('click', showDetails);
+noButton.addEventListener('click', showResults);
 
+function showResults () {
+    const resultsQ1 = "Q1 SEA: x || NE: x";
+    alert(resultsQ1);
+    const resultsQ2 = "Q2 SEA: x || NE: x";
+    alert(resultsQ2);
+    const resultsQ3 = "Q3 SEA: x || NE: x";
+    alert(resultsQ3);
+    const resultsQ4 = "Q4 SEA: x || NE: x";
+    alert(resultsQ4);
+    const resultsOT = "OT SEA: x || NE: x";
+    alert(resultsOT);
+    
+}
 
 function saveNFCToWeb () {
     console.log("enter nfc save to web");
@@ -330,7 +353,7 @@ function saveAFCToWeb () {
 }
 
 function showDetails() {
-    alert("Superbowl Squares v2.2 | SrM Copyright \u00A9 2026");
+    alert("Superbowl Squares v2.3 | SrM Copyright \u00A9 2026");
 }
 
 
